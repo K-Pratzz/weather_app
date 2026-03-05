@@ -63,7 +63,15 @@ button{
 
     font-weight:bold;
 }
-
+.span{
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 8px 14px ;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 4px;
+}
 button:hover{
     opacity:0.9;
 }
@@ -87,4 +95,8 @@ button:hover{
     overflow:auto;
 }
 
-
+#historyAreaBox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
