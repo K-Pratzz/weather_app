@@ -1,4 +1,3 @@
-const apiKey = "0201f292126f678a397019e6aabd74df";
 const history=document.getElementById("historyAreaBox");
 
 const searchButtonNow=document.getElementById("searchButtonNow");
@@ -9,6 +8,7 @@ async function weatherData(city){
     const display=document.getElementById("weatherDisplayResult")
     
     try{
+        const apiKey = "0201f292126f678a397019e6aabd74df";
         const response= await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
         if(!response.ok){
             throw new Error("City not found!!");
@@ -47,7 +47,7 @@ async function weatherData(city){
     }
     xyz.value="";
 }
-searchButtonNow.addEventListener("click",()=>{
+    searchButtonNow.addEventListener("click",()=>{
     const city=document.getElementById("cityInputBox").value.trim();
     if (city){
         weatherData(city);
