@@ -3,17 +3,12 @@ const searchButtonNow = document.getElementById("searchButtonNow");
 const xyz = document.getElementById("cityInputBox");
 const consoleBox = document.getElementById("consoleBlackScreen");
 
-// 👉 FIX 1: Console logger (you missed this)
 function logToScreen(message) {
     const p = document.createElement("p");
     p.textContent = message;
     consoleBox.appendChild(p);
-
-    // auto scroll
-    consoleBox.scrollTop = consoleBox.scrollHeight;
 }
 
-// 👉 MAIN FUNCTION
 async function weatherData(city) {
     const display = document.getElementById("weatherDisplayResult");
 
@@ -22,10 +17,11 @@ async function weatherData(city) {
     logToScreen("Sync Start");
 
     Promise.resolve().then(() => logToScreen("Promise.then (Microtask)"));
+
     setTimeout(() => logToScreen("setTimeout (Macrotask)"), 0);
 
     try {
-        const apiKey = "0201f292126f678a397019e6aabd74df"; // ⚠️ replace this
+        const apiKey = "0201f292126f678a397019e6aabd74df"; 
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
         );
@@ -46,7 +42,6 @@ async function weatherData(city) {
             <p><b>Wind:</b> ${data.wind.speed} m/s</p>
         `;
 
-        // 👉 FIX 2: Avoid duplicates properly
         let alreadyExist = false;
 
         const items = history.querySelectorAll("span");
@@ -79,7 +74,6 @@ async function weatherData(city) {
     xyz.value = "";
 }
 
-// 👉 FIX 3: Button click
 searchButtonNow.addEventListener("click", () => {
     const city = xyz.value.trim();
 
@@ -91,7 +85,6 @@ searchButtonNow.addEventListener("click", () => {
     weatherData(city);
 });
 
-// 👉 FIX 4: Enter key support (IMPORTANT UX)
 xyz.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         searchButtonNow.click();
